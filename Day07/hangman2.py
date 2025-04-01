@@ -20,8 +20,8 @@ game_over = False
 correct_letters = []
 
 while not game_over:
-    print("****************<???>/6 번의 기회가 남았습니다.********************")
-    guess = input("단에를 추측하세요: ").lower()
+    print("****************{lives}/6 번의 기회가 남았습니다.********************")
+    guess = input("단어를 추측하세요: ").lower()
     
     # 이미 추측한 단어를 다시 추측한 경우라면 
     if guess in correct_letters:
@@ -42,12 +42,14 @@ while not game_over:
 
     if guess not in chosen_word:
         lives -= 1
+        print(f"당신은 잘못된 {guess}를 예측했네요. 기회가 1회 줄어듭니다.")
         if lives == 0:
             game_over = True
-            print("게임 실패!!")
+            print("****************게임 실패!!****************")
+            print(f"정답은 : {chosen_word} 입니다." )
 
     if '_' not in display:
         game_over = True
-        print("당신이 이겼습니다.")
+        print("****************당신이 이겼습니다.****************")
 
     print(stages[6-lives])
